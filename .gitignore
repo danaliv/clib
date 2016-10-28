@@ -1,0 +1,5 @@
+*.d
+*.o
+clib.a
+tests/*_runner
+tests/*_runner.c

@@ -3,7 +3,7 @@
 CC?=gcc
 CFLAGS?=-std=gnu99 -g -Wall
 
-sources=memory.c
+sources=memory.c utf8.c
 objects=$(sources:.c=.o)
 deps=$(sources:.c=.d)
 

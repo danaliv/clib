@@ -3,10 +3,10 @@
 CC?=gcc
 CFLAGS?=-std=gnu99 -g -Wall -I.. -Iunity
 
-test_sources=test_memory.c
+test_sources=test_memory.c test_utf8.c
 test_deps=$(test_sources:.c=.d)
 test_runners=$(test_sources:.c=_runner)
-eris_objects=../memory.o
+clib_objects=../memory.o ../utf8.o
 
 .SECONDARY: $(test_sources:.c=.o) $(test_runners:=.c) $(test_runners:=.o) unity/unity.o
 
@@ -19,7 +19,7 @@ clib.a:
 %_runner.c: %.c
 	ruby unity/generate_test_runner.rb $< $@
 
-%_runner: %_runner.o %.o unity/unity.o $(eris_objects)
+%_runner: %_runner.o %.o unity/unity.o $(clib_objects)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.d: %.c
